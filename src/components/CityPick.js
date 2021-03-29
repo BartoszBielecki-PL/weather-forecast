@@ -14,9 +14,8 @@ class CityPick extends Component {
 
   handleClick = () => {
     const { cityName } = this.state;
-
     if (cityName) {
-      this.props.setCityName(cityName);
+      this.props.getWeatherParameters(cityName);
       this.setState({
         cityName: "",
       });

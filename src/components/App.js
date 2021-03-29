@@ -6,35 +6,37 @@ import CityPick from "./CityPick";
 
 class App extends Component {
   state = {
-    cityName: "",
+    // cityName: "",
     weather: [],
   };
 
-  setCityName = (cityName) => {
-    this.setState({
-      cityName: cityName,
-    });
-  };
+  // setCityName = (cityName) => {
+  //   this.setState({
+  //     cityName: cityName,
+  //   });
+  // };
 
-  getWeatherParameters = () => {
-    const { cityName } = this.state;
+  getWeatherParameters = (cityName) => {
     const apiKey = "c4c8854fb0426dd04df7f7f0d3bab41c";
-    if (cityName) {
-      const API = `api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
-      fetch(API)
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw Error(response.status);
-        })
-        .then((data) => {
-          this.setState({
-            weather: data,
-          });
-        })
-        .catch((error) => console.log(error));
-    }
+    const API = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+    fetch(API)
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        }
+        throw Error(response.status);
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          weather: data,
+        });
+      })
+      .catch((error) => console.log(error));
+    console.log(this.state.weather);
   };
 
   render() {
@@ -42,7 +44,10 @@ class App extends Component {
     return (
       <div className="wrap">
         <Header />
-        <CityPick setCityName={this.setCityName} />
+        <CityPick
+          setCityName={this.setCityName}
+          getWeatherParameters={this.getWeatherParameters}
+        />
       </div>
     );
   }
