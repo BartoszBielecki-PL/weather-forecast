@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+// import snowflake from "../jpg/snowflake.jpg";
+// import dandelion from "../jpg/dandelion.jpg";
+// import iceCream from "../jpg/iceCream.jpg";
 import "./App.sass";
-import Header from "./Header";
 import CityPick from "./CityPick";
 import CityInfo from "./CityInfo";
 
@@ -10,6 +11,7 @@ class App extends Component {
   state = {
     weather: [],
     date: "",
+    backgroundImg: "",
   };
 
   getWeatherParameters = (cityName) => {
@@ -28,7 +30,6 @@ class App extends Component {
       })
       .then((data) => {
         const date = new Date().toLocaleString();
-        console.log(data);
         this.setState({
           weather: data,
           date,
@@ -41,11 +42,8 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.weather);
-    console.log(this.state.date);
     return (
       <div className="wrap">
-        <Header />
         <CityPick
           setCityName={this.setCityName}
           getWeatherParameters={this.getWeatherParameters}

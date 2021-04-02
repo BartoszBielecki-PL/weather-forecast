@@ -1,4 +1,5 @@
 import React from "react";
+import "./CityInfo.sass";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { FaTemperatureHigh } from "react-icons/fa";
 import { FiSunset, FiSunrise } from "react-icons/fi";
@@ -18,24 +19,32 @@ const CityInfo = (props) => {
     return (
       <main>
         <h2>{cityInfo.name}</h2>
-        <div className="parameters">
-          <p>
-            <AiOutlineCalendar />
+        <section className="parameters">
+          <div>
+            <p className="icon">
+              <AiOutlineCalendar />
+            </p>
             {date}
-          </p>
-          <p>
-            <FaTemperatureHigh />
+          </div>
+          <div>
+            <p className="icon">
+              <FaTemperatureHigh />
+            </p>
             {Math.round(cityInfo.main.temp)}
-          </p>
-          <p>
-            <FiSunrise />
+          </div>
+          <div>
+            <p className="icon">
+              <FiSunrise />
+            </p>
             {sunriseTime}
-          </p>
-          <p>
-            <FiSunset />
+          </div>
+          <div>
+            <p className="icon">
+              <FiSunset />
+            </p>
             {sunsetTime}
-          </p>
-        </div>
+          </div>
+        </section>
       </main>
     );
   } else {

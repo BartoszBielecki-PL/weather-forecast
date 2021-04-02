@@ -12,7 +12,8 @@ class CityPick extends Component {
     });
   };
 
-  handleClick = () => {
+  handleClick = (e) => {
+    e.preventDefault();
     const { cityName } = this.state;
     if (cityName) {
       this.props.getWeatherParameters(cityName);
@@ -29,10 +30,12 @@ class CityPick extends Component {
     return (
       <section className="city">
         <h3>Enter City Name</h3>
-        <input type="text" value={cityName} onChange={this.handleChange} />
-        <button className="btn btn-primary" onClick={this.handleClick}>
-          Check The Air
-        </button>
+        <form>
+          <input type="text" value={cityName} onChange={this.handleChange} />
+          <button className="btn btn-primary" onClick={this.handleClick}>
+            Check The Weather
+          </button>
+        </form>
       </section>
     );
   }
